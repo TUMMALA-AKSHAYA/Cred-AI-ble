@@ -23,6 +23,41 @@ This document serves as the **complete architectural blueprint and detailed desi
 
 ---
 
+## 🗺️ Roadmap (User Journey)
+
+This 8-step flow outlines the user's complete experience, from initial discovery to final job readiness:
+
+1.  **Login & Onboarding**
+    * User signs up and creates a profile.
+
+2.  **AI-Powered Quiz**
+    * User takes a short quiz to discover their true interests and strengths.
+
+3.  **Career Path Suggestions**
+    * Based on quiz results, CredAIble suggests a few potential career paths.
+    * User selects their preferred path.
+
+4.  **Personalized Roadmap**
+    * A step-by-step career roadmap is generated for the chosen path.
+    * Includes skill modules, daily/weekly tasks, and milestones.
+
+5.  **Gamification with Points**
+    * Users earn points for completing tasks daily.
+    * Progress feels interactive and motivating.
+
+6.  **Resume Builder (Points-Driven)**
+    * Collected points unlock features in the resume builder.
+    * User creates a blockchain-verified, job-ready resume.
+
+7.  **Mentor Matching**
+    * Platform connects users to mentors in their chosen career path.
+    * Verified mentors provide real-time guidance.
+
+8.  **Job Readiness**
+    * Once the roadmap is completed and resume is verified, users are fully job-ready and can connect with employers.
+
+---
+
 ## 🛠️ Technical Architecture
 
 | Component | Technology | Rationale and Implementation Detail |
@@ -36,7 +71,7 @@ This document serves as the **complete architectural blueprint and detailed desi
 
 ---
 
-## 🗺️ Technical Flow: Resume Verification
+## ⚙️ Technical Flow: Resume Verification
 
 This is the core innovation of the platform:
 
