@@ -79,15 +79,7 @@ This is the core innovation of the platform:
 2.  **Hashing:** The Express backend generates a **SHA-256 hash** of the resume file.
 3.  **Decentralized Storage:** The resume file is uploaded to **IPFS**, returning a decentralized **Content Identifier (CID)**.
 4.  **On-Chain Immutability:** An **Algorand Smart Contract** is executed to **mint an ASA credential token** and securely record the **IPFS CID** and the user's **public wallet address** on the Algorand blockchain. This token *is* the credential.
-
----
-
-## 🖼️ Architectural Diagram & Wireframes
-
-**(NOTE: In a real submission, place the diagram image here or link to an external file.)**
-
-[Link to High-Level System Architecture Diagram (e.g., Figma/PDF)]
-
+   
 ---
 
 ## 💻 How to Run (Planned)
