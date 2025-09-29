@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DreamFit Learning Journey</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Opening Page -->
+  <div id="openingPage" class="centered">
+    <h1>Start Your Journey with DreamFit</h1>
+    <button id="startBtn">Start Journey</button>
+  </div>
+
+  <!-- Topic Selection Page -->
+  <div id="topicPage" class="centered hidden">
+    <h2>Select Your Learning Path</h2>
+    <div class="options-container">
+      <button data-topic="AI">AI</button>
+      <button data-topic="Web Dev">Web Dev</button>
+      <button data-topic="ML">ML</button>
+      <button data-topic="Blockchain">Blockchain</button>
+    </div>
+  </div>
+
+  <!-- Game Page -->
+  <div id="gamePage" class="map-container hidden">
+    <div class="coins">Coins: <span id="coinCount">0</span> 🪙</div>
+    <div class="map" id="mapLevels"></div>
+  </div>
+
+  <!-- Popup -->
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2 id="popup-title">Level</h2>
+      <p id="popup-question"></p>
+      <div id="answer-buttons"></div>
+    </div>
+  </div>
+
+  <!-- Completion Screen -->
+  <div class="completion-screen" id="completionScreen">
+    <h1>🎉 Congratulations! 🎉</h1>
+    <p id="finalCoins">You collected 0 coins 🪙</p>
+    <p>You completed all the levels!</p>
+    <button id="playMoreBtn">Play More</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
