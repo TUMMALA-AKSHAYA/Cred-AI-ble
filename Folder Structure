@@ -1,0 +1,29 @@
+career-discovery-algorand/
+├── frontend/
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── index.js
+│   │   ├── index.css
+│   │   └── services/
+│   │       └── api.js
+│   ├── public/
+│   │   └── index.html
+│   ├── package.json
+│   ├── tailwind.config.js
+│   └── postcss.config.js
+├── backend/
+│   ├── services/
+│   │   └── algorandService.js
+│   ├── routes/
+│   │   ├── algorandRoutes.js
+│   │   ├── userRoutes.js
+│   │   └── quizRoutes.js
+│   ├── models/
+│   │   ├── User.js
+│   │   └── QuizResponse.js
+│   ├── scripts/
+│   │   └── generateTreasuryAccount.js
+│   ├── server.js
+│   ├── package.json
+│   └── .env.example
+└── README.md
