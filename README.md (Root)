@@ -1,0 +1,186 @@
+# Career Discovery Platform with Algorand Blockchain
+
+AI-powered career discovery platform that issues blockchain-verified skill credentials as NFT badges on Algorand.
+
+## 🌟 Features
+
+- **AI Career Matching**: 8-question personality assessment with weighted trait analysis
+- **Domain Skill Evaluation**: Technical quizzes for AI/ML, Web Dev, Backend, Data Science, UI/UX
+- **NFT Badges**: Blockchain-verified achievement certificates on Algorand
+- **On-Chain Storage**: Immutable learning history stored on Algorand blockchain
+- **Percentile Ranking**: Compare performance with other learners
+- **Personalized Learning**: Identify weak areas and get targeted recommendations
+
+## 🏗️ Architecture
+
+### Frontend
+- **React 18** with Hooks
+- **Tailwind CSS** for modern, responsive UI
+- **Glassmorphism** design with smooth animations
+- Real-time trait scoring algorithm
+- Multi-step quiz with progress tracking
+
+### Backend
+- **Node.js + Express** REST API
+- **Algorand JavaScript SDK** for blockchain integration
+- **MongoDB** for user data and progress tracking
+- NFT minting via Algorand Standard Assets
+- Transaction encoding/decoding for on-chain metadata
+
+### Blockchain
+- **Algorand TestNet** for development
+- NFT badges (ASA with supply = 1)
+- Zero-cost data storage in transaction notes
+- Sub-second transaction finality
+- Indexer for achievement queries
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js v18+
+- MongoDB (local or Atlas)
+- Algorand TestNet account
+
+### Backend Setup
+```bash
+cd backend
+npm install
+```
+
+Create `.env` file:
+```env
+PORT=5001
+MONGODB_URI=mongodb://localhost:27017/career-discovery
+JWT_SECRET=your_secret_key
+ALGORAND_TREASURY_MNEMONIC="your 25-word mnemonic"
+```
+
+Generate treasury account:
+```bash
+node scripts/generateTreasuryAccount.js
+```
+
+Fund account at: https://bank.testnet.algorand.network/
+
+Start server:
+```bash
+node server.js
+```
+
+### Frontend Setup
+```bash
+cd frontend
+npm install
+npm start
+```
+
+Visit: http://localhost:3000
+
+## 📡 API Endpoints
+
+### Algorand Routes
+- `POST /api/algorand/create-account` - Generate new Algorand account
+- `POST /api/algorand/mint-badge` - Mint NFT badge for achievement
+- `POST /api/algorand/store-achievement` - Store data on-chain
+- `GET /api/algorand/balance/:address` - Check ALGO balance
+- `GET /api/algorand/badges/:address` - Get user's NFT badges
+- `GET /api/algorand/achievements/:address` - Get on-chain achievements
+
+### Quiz Routes
+- `POST /api/quiz/interest` - Submit interest discovery quiz
+- `POST /api/quiz/domain` - Submit domain skill assessment
+- `GET /api/quiz/user/:userId` - Get user's quiz history
+- `GET /api/quiz/leaderboard/:domain` - Get domain leaderboard
+
+## 🎯 How It Works
+
+1. **Interest Discovery**: User takes 8 questions assessing personality & technical traits
+2. **Career Matching**: Algorithm weights traits against 5 career paths, returns top 3 matches
+3. **Domain Assessment**: User selects career, takes 8 technical questions
+4. **Scoring & Analysis**: System calculates score, percentile, identifies weak topics
+5. **Badge Minting**: Backend mints NFT badge on Algorand with embedded metadata
+6. **Blockchain Storage**: Achievement data stored in transaction notes (immutable)
+7. **Verification**: Anyone can verify credentials on AlgoExplorer
+
+## 🔐 Blockchain Integration
+
+### NFT Badge Structure
+```javascript
+{
+  assetName: "AI/Machine Learning Badge",
+  unitName: "BADGE",
+  total: 1,  // Unique NFT
+  decimals: 0,
+  note: {
+    type: 'skill_badge',
+    score: 88,
+    percentile: 85,
+    career: 'AI/Machine Learning',
+    date: '2025-10-22T...'
+  }
+}
+```
+
+### On-Chain Achievement Data
+- Stored in transaction notes (no extra cost)
+- Indexed for fast queries
+- Permanently verifiable
+- User-owned (non-custodial)
+
+## 📊 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | React, Tailwind CSS, Axios |
+| Backend | Node.js, Express, Mongoose |
+| Blockchain | Algorand JavaScript SDK |
+| Database | MongoDB |
+| Network | Algorand TestNet |
+| Tools | AlgoExplorer, Pera Wallet (upcoming) |
+
+## 🛣️ Roadmap
+
+### ✅ Completed
+- Interest discovery quiz with AI matching
+- Domain-specific skill assessments
+- Algorand SDK integration
+- NFT badge minting system
+- On-chain data storage
+- Percentile calculation
+- Weak area identification
+
+### 🔜 Next Phase (November)
+- Pera Wallet integration for user authentication
+- PyTeal smart contracts for advanced features
+- AlgoKit migration for better dev workflow
+- ASA token rewards for learning milestones
+- Badge gallery UI with verification links
+- Decentralized leaderboards
+- Peer verification mechanisms
+
+## 🎥 Demo Video
+
+[Link to Hackseries submission video]
+
+## 🏆 Algorand Hackseries #2
+
+This project is built for Algorand Hackseries #2, demonstrating:
+- Practical use of Algorand for verifiable credentials
+- Low-cost NFT minting for education
+- On-chain data storage without IPFS
+- Fast finality for instant badge issuance
+- SDK integration for seamless blockchain interaction
+
+## 📄 License
+
+MIT
+
+## 🤝 Contributing
+
+Contributions welcome! Please open an issue or PR.
+
+## 📧 Contact
+
+[Your Name] - [Your Email]
+
+Project Link: https://github.com/yourusername/career-discovery-algorand
