@@ -166,6 +166,35 @@ To confirm Algorand blockchain functionality, run:
 cd backend
 node scripts/testAlgorandIntegration.js
 ```
+---
+
+## 🧩 Demo Proofs
+
+### 🎓 Verified Blockchain Integration
+
+Our platform uses the **Algorand TestNet** to issue verifiable credentials as NFTs and store achievements on-chain.  
+Below are live proofs of blockchain interaction performed through our backend service.
+
+| Feature | Description | TestNet Proof |
+| :-- | :-- | :-- |
+| 🪙 **Treasury Wallet** | Platform’s verified Algorand TestNet treasury used for all transactions. | [PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M](https://testnet.algoexplorer.io/address/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M) |
+| 🏅 **NFT Badge Minting** | Smart contract-created ASA for verified career achievements. | [View Example Transaction](https://testnet.algoexplorer.io/tx/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ) |
+| 📜 **On-Chain Data Storage** | User quiz results & achievements encoded in transaction notes. | ✅ Implemented via `storeAchievement()` in [algorandService.js](./backend/services/algorandService.js) |
+| 💰 **Token Rewards** | Platform rewards users for learning milestones using ALGO micropayments. | 🧠 Function: `rewardTokens()` |
+| 🔎 **Data Verification** | Uses Algorand Indexer API to retrieve and verify transactions. | Function: `verifyTransaction()` |
+
+All transactions are verified on **Algorand TestNet**, ensuring transparency, immutability, and ownership of digital credentials.
+
+---
+
+### 🖼️ Screenshots (UI Preview)
+
+| Quiz & Roadmap | Blockchain Dashboard |
+| :--: | :--: |
+| ![Quiz Preview](./assets/screenshots/quiz.png) | ![Blockchain Dashboard](./assets/screenshots/dashboard.png) |
+
+---
+
 
 ## ⚙️ How to Run Locally
 
