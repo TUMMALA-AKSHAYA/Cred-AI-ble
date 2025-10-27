@@ -1,14 +1,26 @@
 {
   "name": "career-discovery-backend",
   "version": "1.0.0",
-  "description": "Backend for Career Discovery Platform with Algorand integration",
+  "description": "Backend for CredAIble — AI + Blockchain Career Platform with Algorand integration",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
     "dev": "nodemon server.js"
   },
-  "keywords": ["algorand", "education", "nft", "blockchain", "credentials"],
-  "author": "Your Name",
+  "keywords": [
+    "algorand",
+    "blockchain",
+    "nft",
+    "web3",
+    "education",
+    "credentials",
+    "algosdk"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TUMMALA-AKSHAYA/Cred-AI-ble"
+  },
+  "author": "Tummala Akshaya",
   "license": "MIT",
   "dependencies": {
     "algosdk": "^3.1.2",
