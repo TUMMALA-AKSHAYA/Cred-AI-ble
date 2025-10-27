@@ -56,11 +56,13 @@ Using **Algorand JavaScript SDK (v3.1.2)** for:
 
 **Key Files:**
 
-
 backend/
-├── services/algorandService.js       # Core blockchain logic
-├── routes/algorandRoutes.js          # REST API endpoints
-└── scripts/generateTreasuryAccount.js # Account creation script
+├── services/
+│   └── algorandService.js        # Core blockchain logic
+├── routes/
+│   └── algorandRoutes.js         # REST API endpoints
+└── scripts/
+    └── generateTreasuryAccount.js # Account creation script
 
 ```
 ````
