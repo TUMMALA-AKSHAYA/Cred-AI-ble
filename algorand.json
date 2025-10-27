@@ -1,0 +1,42 @@
+{
+  "name": "Cred-AI-ble",
+  "description": "Career Discovery Platform with Algorand blockchain-verified credentials",
+  "version": "1.0.0",
+  "blockchain": "Algorand",
+  "network": "TestNet",
+  "features": [
+    "NFT Badge Minting",
+    "On-chain Achievement Storage",
+    "Algorand SDK Integration",
+    "Asset Creation (ASA)",
+    "Transaction Signing",
+    "Indexer Queries"
+  ],
+  "sdk": {
+    "name": "algosdk",
+    "version": "3.1.2",
+    "language": "JavaScript"
+  },
+  "contracts": {
+    "type": "SDK-based",
+    "note": "Using Algorand JavaScript SDK directly. Smart contracts planned for Phase 2"
+  },
+  "treasury": {
+    "address": "PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M",
+    "network": "TestNet",
+    "explorerUrl": "https://testnet.algoexplorer.io/address/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M"
+  },
+  "apis": {
+    "algod": "https://testnet-api.algonode.cloud",
+    "indexer": "https://testnet-idx.algonode.cloud"
+  },
+  "keywords": [
+    "algorand",
+    "blockchain",
+    "nft",
+    "education",
+    "credentials",
+    "web3",
+    "testnet"
+  ]
+}
