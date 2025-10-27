@@ -158,6 +158,15 @@ const txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
 </details>
 
 ---
+## 🧪 Algorand SDK Verification
+
+To confirm Algorand blockchain functionality, run:
+
+```bash
+cd backend
+node scripts/testAlgorandIntegration.js
+```
+
 ## ⚙️ How to Run Locally
 
 ```bash
