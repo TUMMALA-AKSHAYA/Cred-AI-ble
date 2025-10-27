@@ -62,7 +62,7 @@ backend/
 ├── routes/algorandRoutes.js          # REST API endpoints
 └── scripts/generateTreasuryAccount.js # Account creation script
 
-````
+```
 ````
 #### 🪙 **NFT Badge Creation Example**
 javascript
@@ -70,7 +70,7 @@ const txn = algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
   from: treasuryAccount.addr,
   total: 1,
   decimals: 0,
-  assetName: `${metadata.careerPath} Badge`,
+  assetName: ${metadata.careerPath} Badge,
   unitName: 'BADGE',
   note: algosdk.encodeObj({
     type: 'skill_badge',
