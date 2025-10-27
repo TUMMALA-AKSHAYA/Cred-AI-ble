@@ -1,102 +1,200 @@
-# 🌟 CredAIble: AI + Blockchain Career Platform
 
-CredAIble is an **AI + Blockchain-powered career platform** designed for students, graduates, and professionals. Its goal is to guide users from interest discovery to job readiness and provide them with **tamper-proof, verifiable credentials** that they genuinely own.
+
+
+<h1 align="center">🌐 <b>CredAIble — AI + Blockchain Career Platform</b></h1>
+
+<p align="center">
+Empowering students and professionals with AI-guided career paths and blockchain-verified credentials.
+</p>
+
+<p align="center">
+  <a href="https://algorand.com"><img src="https://img.shields.io/badge/Blockchain-Algorand-00D1B2?style=for-the-badge&logo=algorand"></a>
+  <a href="https://testnet.algoexplorer.io/"><img src="https://img.shields.io/badge/Network-TestNet-orange?style=for-the-badge"></a>
+  <a href="https://github.com/algorand/js-algorand-sdk"><img src="https://img.shields.io/badge/SDK-algosdk%20v3.1.2-blue?style=for-the-badge"></a>
+</p>
 
 ---
 
-## 🚀 Status and Purpose of this Submission
-
-This document serves as the **complete architectural blueprint and detailed design specification** for the CredAIble platform. The current repository contains the design documentation; **code implementation is planned for the next development phase.**
+## 🎯 **Vision**
+**CredAIble** bridges the gap between *career discovery* and *verified skill ownership*, guiding users from **interest identification** to **job readiness** through **AI-driven insights and blockchain authentication**.
 
 ---
 
-## ✨ Key Features
+<details>
+<summary>✨ <b>Core Features</b></summary>
 
 | Feature | Description | Technical Core |
 | :--- | :--- | :--- |
-| **AI-Powered Quiz** | Uses NLP and psychometric scoring to determine a user's true strengths and career alignment. | **Python (Scikit-learn/Transformers)** |
-| **Personalized Roadmap** | Generates a structured, step-by-step learning path with measurable milestones. | **MongoDB** for storage of dynamic path data. |
-| **Blockchain Credentials** | Enables users to receive **Algorand Asset Tokens (ASAs)** representing verified credentials. | **Algorand Smart Contracts (PyTeal)** |
-| **Resume Verification** | Creates job-ready resumes linked to immutable, decentralized evidence. | **IPFS** for document hashing and storage. |
-| **Mentor Matching** | Connects users with verified industry professionals for guidance. | Express API and matching algorithm. |
-| **Gamification** | Drives user retention through a points-based system that rewards task completion. | Backend tracking in MongoDB. |
+| 🧠 **AI-Powered Quiz** | Uses NLP and psychometric scoring to determine a user's strengths and career alignment. | Python (Scikit-learn / Transformers) |
+| 🗺️ **Personalized Roadmap** | Generates a step-by-step learning path with measurable milestones. | MongoDB |
+| 🔗 **Blockchain Credentials** | Issues Algorand ASAs representing verified credentials. | Algorand Smart Contracts (PyTeal) |
+| 📜 **Resume Verification** | Creates job-ready resumes linked to immutable blockchain proof. | IPFS + Algorand |
+| 🤝 **Mentor Matching** | Connects users with verified industry experts for mentorship. | Express API |
+| 🎮 **Gamification** | Rewards users with points and NFT badges for completing milestones. | MongoDB & Algorand |
+
+</details>
 
 ---
 
-## 🗺️ Roadmap (User Journey)
+<details>
+<summary>🔗 <b>Algorand Blockchain Integration</b></summary>
 
-This 8-step flow outlines the user's complete experience, from initial discovery to final job readiness:
-
-1.  **Login & Onboarding**
-    * User signs up and creates a profile.
-
-2.  **AI-Powered Quiz**
-    * User takes a short quiz to discover their true interests and strengths.
-
-3.  **Career Path Suggestions**
-    * Based on quiz results, CredAIble suggests a few potential career paths.
-    * User selects their preferred path.
-
-4.  **Personalized Roadmap**
-    * A step-by-step career roadmap is generated for the chosen path.
-    * Includes skill modules, daily/weekly tasks, and milestones.
-
-5.  **Gamification with Points**
-    * Users earn points for completing tasks daily.
-    * Progress feels interactive and motivating.
-
-6.  **Resume Builder (Points-Driven)**
-    * Collected points unlock features in the resume builder.
-    * User creates a blockchain-verified, job-ready resume.
-
-7.  **Mentor Matching**
-    * Platform connects users to mentors in their chosen career path.
-    * Verified mentors provide real-time guidance.
-
-8.  **Job Readiness**
-    * Once the roadmap is completed and resume is verified, users are fully job-ready and can connect with employers.
+### 💰 **Live Algorand TestNet Account**
+- 🪙 **Treasury Address:** [`PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M`](https://testnet.algoexplorer.io/address/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M)
+- 🌍 **Network:** Algorand TestNet  
+- 💵 **Balance:** 10 ALGO  
+- 🔎 **Example Transaction:** [View on AlgoExplorer](https://testnet.algoexplorer.io/tx/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ)
 
 ---
 
-## 🛠️ Technical Architecture
+### ⚙️ **Algorand SDK Implementation**
+Using **Algorand JavaScript SDK (v3.1.2)** for:
+- ✅ NFT Badge Minting  
+- ✅ On-Chain Data Storage  
+- ✅ Account Management  
+- ✅ Blockchain Queries (Indexer API)
 
-| Component | Technology | Rationale and Implementation Detail |
-| :--- | :--- | :--- |
-| **Frontend** | `React (Vite)` | Chosen for speed, modularity, and a performant Single-Page Application (SPA) experience. |
-| **Backend** | `Node.js / Express` | Handles all API routes, authentication, and communication between the frontend and core services. |
-| **AI/ML Modules** | `Python (Scikit-learn/Transformers)` | Used for quiz scoring, **Natural Language Processing (NLP)** on user input, and generating personalized career matching vectors. |
-| **Smart Contracts** | `Algorand (PyTeal/TS SDK)` | Chosen for its low transaction fees, speed, and focus on regulatory-compliant tokenization (using **ASAs** for credential tokens). |
-| **Database** | `MongoDB` | Flexible NoSQL database ideal for storing user profiles, dynamic quiz data, and personalized roadmap details. |
-| **Storage** | `IPFS` | Used to store the **digital hash (CID)** of user resumes and certificates, ensuring decentralized, non-custodial, and publicly auditable evidence. |
+**Key Files:**
+
+
+backend/
+├── services/algorandService.js       # Core blockchain logic
+├── routes/algorandRoutes.js          # REST API endpoints
+└── scripts/generateTreasuryAccount.js # Account creation script
+
+````
+````
+#### 🪙 **NFT Badge Creation Example**
+javascript
+const txn = algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
+  from: treasuryAccount.addr,
+  total: 1,
+  decimals: 0,
+  assetName: `${metadata.careerPath} Badge`,
+  unitName: 'BADGE',
+  note: algosdk.encodeObj({
+    type: 'skill_badge',
+    score: metadata.score,
+    percentile: metadata.percentile,
+    career: metadata.careerPath
+  })
+});
+
+
+#### 🧾 **On-Chain Achievement Storage Example**
+
+javascript
+const txn = algosdk.makePaymentTxnWithSuggestedParamsFromObject({
+  from: treasuryAccount.addr,
+  to: userAddress,
+  amount: 0,
+  note: algosdk.encodeObj({
+    type: 'achievement',
+    career: achievementData.career,
+    score: achievementData.score,
+    date: new Date().toISOString()
+  })
+});
+
 
 ---
 
-## ⚙️ Technical Flow: Resume Verification
+### 🌟 **Algorand Advantages**
 
-This is the core innovation of the platform:
+| Advantage           | Description                                  |
+| :------------------ | :------------------------------------------- |
+| ⚡ **Fast**          | 3–4 second transaction finality              |
+| 💸 **Low-Cost**     | < $0.001 per transaction                     |
+| 🌱 **Eco-Friendly** | Carbon-negative blockchain                   |
+| 🔒 **Secure**       | Tamper-proof credentials                     |
+| 🌐 **Scalable**     | 1000+ TPS — perfect for educational adoption |
 
-1.  **User Action:** User finalizes their job-ready resume in the React-based Resume Builder.
-2.  **Hashing:** The Express backend generates a **SHA-256 hash** of the resume file.
-3.  **Decentralized Storage:** The resume file is uploaded to **IPFS**, returning a decentralized **Content Identifier (CID)**.
-4.  **On-Chain Immutability:** An **Algorand Smart Contract** is executed to **mint an ASA credential token** and securely record the **IPFS CID** and the user's **public wallet address** on the Algorand blockchain. This token *is* the credential.
-   
----
-
-## 💻 How to Run (Planned)
-
-1.  Clone the repository: `git clone [repository-url]`
-2.  Install dependencies:
-    * `cd frontend && npm install`
-    * `cd backend && npm install`
-3.  Set up environment variables for MongoDB and Algorand TestNet access.
-4.  Run the application: `npm run dev` (from the root directory, starting both frontend and backend).
+</details>
 
 ---
 
-## 📞 Contact
+<details>
+<summary>🗺️ <b>User Journey</b></summary>
 
-Team DreamFit
+1️⃣ **Login & Onboarding** – Create a user profile
+2️⃣ **AI-Powered Quiz** – Discover strengths and interests
+3️⃣ **Career Path Suggestions** – Choose from 3 recommended options
+4️⃣ **Personalized Roadmap** – Step-by-step learning guide
+5️⃣ **Gamification** – Earn coins and badges for progress
+6️⃣ **Resume Builder** – Create a blockchain-verified resume
+7️⃣ **Mentor Matching** – Connect with verified mentors
+8️⃣ **Job Readiness** – Become employable and verifiable
 
-Akshaya — [tummalaakshaya070@gmail.com]
+</details>
 
-Sirisha — [katakamsirisha53@gmail.com]
+---
+
+<details>
+<summary>🧠 <b>Technical Architecture</b></summary>
+
+| Component         | Technology                           | Purpose                         |
+| :---------------- | :----------------------------------- | :------------------------------ |
+| 💻 **Frontend**   | React (Vite + Tailwind)              | Fast and modern UI              |
+| ⚙️ **Backend**    | Node.js / Express                    | APIs and Algorand integration   |
+| 🧠 **AI/ML**      | Python (Scikit-learn / Transformers) | Quiz scoring and insights       |
+| 🔗 **Blockchain** | Algorand (PyTeal / JS SDK)           | Credential issuance             |
+| 🗃️ **Database**  | MongoDB                              | User data and progress tracking |
+| 🧾 **Storage**    | IPFS                                 | Resume & document verification  |
+
+</details>
+
+---
+
+<details>
+<summary>💰 <b>Business Model</b></summary>
+
+🎓 **Freemium Access** – Free quizzes & career paths
+💼 **Premium Add-ons** – Resume AI reviews & mentorship
+🏫 **Institutional Plans** – Colleges issue blockchain credentials
+🪙 **Token Economy** – Earn & redeem tokens for learning resources
+
+</details>
+
+---
+## ⚙️ How to Run Locally
+
+```bash
+# ---------- SETUP INSTRUCTIONS ----------
+
+# Step 1: Clone the repository
+git clone https://github.com/TUMMALA-AKSHAYA/Cred-AI-ble.git
+cd Cred-AI-ble
+
+# Step 2: Install dependencies
+cd frontend && npm install
+cd ../backend && npm install
+
+# Step 3: Configure environment variables (.env)
+# Include MongoDB URI, Algorand TestNet details, and treasury mnemonic
+
+# Step 4: Start the app
+npm run dev
+```
+---
+
+## 👥 **Team**
+
+| Name                | Role                      | Contact                                                           |
+| :------------------ | :------------------------ | :---------------------------------------------------------------- |
+| **Akshaya Tummala** | UI/UX & Backend Developer | [tummalaakshaya070@gmail.com](mailto:tummalaakshaya070@gmail.com) |
+| **Sirisha Katakam** | AI & Frontend Developer   | [katakamsirisha53@gmail.com](mailto:katakamsirisha53@gmail.com)   |
+
+---
+
+## 🏁 **Future Goals**
+
+🚀 Launch public MVP
+🤝 Partner with universities
+💰 Secure seed funding & Algorand grant
+📱 Develop mobile app version
+
+---
+
+<p align="center"><b>CredAIble — Redefining Careers with AI & Blockchain 🚀</b></p>
+
+---
