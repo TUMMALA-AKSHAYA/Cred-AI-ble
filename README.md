@@ -1,10 +1,7 @@
-
-
-
-<h1 align="center">🌐 <b>CredAIble — AI + Blockchain Career Platform</b></h1>
+<h1 align="center">🌐 Career Discovery Platform with Algorand Blockchain</h1>
 
 <p align="center">
-Empowering students and professionals with AI-guided career paths and blockchain-verified credentials.
+Empowering students and professionals with AI-guided career paths and <b>Algorand-verified credentials</b>.
 </p>
 
 <p align="center">
@@ -15,7 +12,14 @@ Empowering students and professionals with AI-guided career paths and blockchain
 
 ---
 
-## 🎯 **Vision**
+### 🧩 Overview
+
+This project integrates the **Algorand blockchain** to issue **NFT-based skill badges**, store **on-chain achievements**, and verify **career credentials** in a decentralized and tamper-proof way.
+
+---
+
+## 🎯 Vision
+
 **CredAIble** bridges the gap between *career discovery* and *verified skill ownership*, guiding users from **interest identification** to **job readiness** through **AI-driven insights and blockchain authentication**.
 
 ---
