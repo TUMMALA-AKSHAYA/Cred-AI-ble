@@ -1,3 +1,5 @@
+// 🔹 This function mints an NFT badge using Algorand SDK v3.1.2 on TestNet
+
 const algosdk = require('algosdk');
 
 // Algorand TestNet configuration
