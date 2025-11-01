@@ -199,7 +199,6 @@ All transactions are verified on **Algorand TestNet**, ensuring transparency, im
 
 ---
 
-
 ## ⚙️ How to Run Locally
 
 ```bash
@@ -218,16 +217,50 @@ cd ../backend && npm install
 
 # Step 4: Start the app
 npm run dev
-```
+
 ---
+```
+## 🔍 For Reviewers: Algorand Integration Proof
 
-## 👥 **Team**
+### Quick Navigation to Algorand Code
 
-| Name                | Role                      | Contact                                                           |
-| :------------------ | :------------------------ | :---------------------------------------------------------------- |
-| **Akshaya Tummala** | UI/UX & Backend Developer | [tummalaakshaya070@gmail.com](mailto:tummalaakshaya070@gmail.com) |
-| **Sirisha Katakam** | AI & Frontend Developer   | [katakamsirisha53@gmail.com](mailto:katakamsirisha53@gmail.com)   |
+| Component | File | Lines | Description |
+|-----------|------|-------|-------------|
+| **SDK Import** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L1) | 1 | `const algosdk = require('algosdk')` |
+| **TestNet Setup** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L4-L5) | 4-5 | Algod & Indexer client initialization |
+| **NFT Minting** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L45-L75) | 45-75 | Asset creation with metadata |
+| **On-Chain Storage** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L98-L120) | 98-120 | Transaction note encoding |
+| **Dependencies** | [`backend/package.json`](./backend/package.json#L17) | 17 | `"algosdk": "^3.1.2"` |
+| **API Routes** | [`backend/routes/algorandRoutes.js`](./backend/routes/algorandRoutes.js) | All | REST endpoints for blockchain ops |
 
+### Live Deployment (Example Configuration)
+
+Treasury (Example): YOUR_TREASURY_ALGO_ADDRESS
+
+Network: Algorand TestNet
+
+Status: ✅ Active (Example setup for demo)
+
+Example TX: View Sample on AlgoExplorer
+
+### How to Verify
+```bash
+# Clone and setup
+git clone https://github.com/TUMMALA-AKSHAYA/Cred-AI-ble.git
+cd Cred-AI-ble/backend
+npm install
+
+# Check algosdk is installed
+npm list algosdk
+# Output: algosdk@3.1.2
+
+# Start server
+npm start
+
+# Test Algorand integration (replace address)
+curl http://localhost:5001/api/algorand/balance/YOUR_TREASURY_ALGO_ADDRESS
+
+```
 ---
 
 ## 🏁 **Future Goals**
@@ -242,3 +275,9 @@ npm run dev
 <p align="center"><b>CredAIble — Redefining Careers with AI & Blockchain 🚀</b></p>
 
 ---
+## 👥 **Team**
+
+| Name                | Role                      | Contact                                                           |
+| :------------------ | :------------------------ | :---------------------------------------------------------------- |
+| **Akshaya Tummala** | UI/UX & Backend Developer | [tummalaakshaya070@gmail.com](mailto:tummalaakshaya070@gmail.com) |
+| **Sirisha Katakam** | AI & Frontend Developer   | [katakamsirisha53@gmail.com](mailto:katakamsirisha53@gmail.com)   |
