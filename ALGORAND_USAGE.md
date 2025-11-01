@@ -1,6 +1,6 @@
 # Algorand SDK Usage in Cred-AI-ble
 
-## Quick Reference Guide
+## Quick Reference Guide.
 
 This document provides clear examples of how Algorand blockchain is integrated into this project.
 
