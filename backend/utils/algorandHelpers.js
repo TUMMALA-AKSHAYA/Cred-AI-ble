@@ -35,16 +35,6 @@ const formatAddress = (address, startChars = 6, endChars = 4) => {
 };
 
 /**
- * Get AlgoExplorer URL for address
- */
-const getExplorerAddressUrl = (address, network = 'testnet') => {
-  const baseUrl = network === 'mainnet' 
-    ? 'https://algoexplorer.io' 
-    : 'https://testnet.algoexplorer.io';
-  return `${baseUrl}/address/${address}`;
-};
-
-/**
  * Get AlgoExplorer URL for transaction
  */
 const getExplorerTxUrl = (txId, network = 'testnet') => {
@@ -52,6 +42,16 @@ const getExplorerTxUrl = (txId, network = 'testnet') => {
     ? 'https://algoexplorer.io' 
     : 'https://testnet.algoexplorer.io';
   return `${baseUrl}/tx/${txId}`;
+};
+
+/**
+ * Get AlgoExplorer URL for address
+ */
+const getExplorerAddressUrl = (address, network = 'testnet') => {
+  const baseUrl = network === 'mainnet' 
+    ? 'https://algoexplorer.io' 
+    : 'https://testnet.algoexplorer.io';
+  return `${baseUrl}/address/${address}`;
 };
 
 /**
@@ -64,65 +64,12 @@ const getExplorerAssetUrl = (assetId, network = 'testnet') => {
   return `${baseUrl}/asset/${assetId}`;
 };
 
-/**
- * Wait for transaction confirmation with timeout
- */
-const waitForConfirmationWithTimeout = async (algodClient, txId, timeout = 10) => {
-  const startRound = (await algodClient.status().do())['last-round'];
-  let currentRound = startRound;
-
-  while (currentRound < startRound + timeout) {
-    try {
-      const pendingInfo = await algodClient.pendingTransactionInformation(txId).do();
-      if (pendingInfo['confirmed-round'] !== null && pendingInfo['confirmed-round'] > 0) {
-        return pendingInfo;
-      }
-      if (pendingInfo['pool-error'] != null && pendingInfo['pool-error'].length > 0) {
-        throw new Error(`Transaction rejected: ${pendingInfo['pool-error']}`);
-      }
-      await algodClient.statusAfterBlock(currentRound).do();
-      currentRound++;
-    } catch (error) {
-      throw error;
-    }
-  }
-  throw new Error(`Transaction not confirmed after ${timeout} rounds`);
-};
-
-/**
- * Parse metadata from transaction note
- */
-const parseTransactionNote = (noteBase64) => {
-  try {
-    const noteBuffer = Buffer.from(noteBase64, 'base64');
-    return algosdk.decodeObj(noteBuffer);
-  } catch (error) {
-    console.error('Error parsing transaction note:', error);
-    return null;
-  }
-};
-
-/**
- * Encode metadata to transaction note
- */
-const encodeTransactionNote = (metadata) => {
-  try {
-    return algosdk.encodeObj(metadata);
-  } catch (error) {
-    console.error('Error encoding transaction note:', error);
-    return undefined;
-  }
-};
-
 module.exports = {
   microAlgosToAlgos,
   algosToMicroAlgos,
   isValidAddress,
   formatAddress,
-  getExplorerAddressUrl,
   getExplorerTxUrl,
-  getExplorerAssetUrl,
-  waitForConfirmationWithTimeout,
-  parseTransactionNote,
-  encodeTransactionNote
+  getExplorerAddressUrl,
+  getExplorerAssetUrl
 };
