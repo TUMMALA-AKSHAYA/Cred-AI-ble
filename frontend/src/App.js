@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
-import { ArrowRight, ArrowLeft, Sparkles, Brain, Code, TrendingUp, Zap, Target, Rocket, Award, CheckCircle, XCircle, TrendingDown, BookOpen } from 'lucide-react';
+import { ArrowRight, ArrowLeft, Sparkles, Brain, Code, TrendingUp, Zap, Target, Rocket, Award, CheckCircle, XCircle, TrendingDown, BookOpen, Trophy } from 'lucide-react';
+import { useWallet } from './contexts/WalletContext';
+import { algorandAPI } from './services/algorandApi';
+import WalletConnect from './components/WalletConnect';
+import BadgeDisplay from './components/BadgeDisplay';
 
 const CareerQuizApp = () => {
+  const { walletAddress } = useWallet();
   const [currentStep, setCurrentStep] = useState('welcome');
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -9,6 +14,8 @@ const CareerQuizApp = () => {
   const [selectedCareer, setSelectedCareer] = useState(null);
   const [domainAnswers, setDomainAnswers] = useState({});
   const [domainResults, setDomainResults] = useState(null);
+  const [mintingBadge, setMintingBadge] = useState(false);
+  const [badgeMinted, setBadgeMinted] = useState(false);
 
   const domainQuizzes = {
     "AI/Machine Learning": [
@@ -136,25 +143,25 @@ const CareerQuizApp = () => {
     }
   };
 
-  const calculateDomainResults = (answers, quizQuestions) => {
+  const calculateDomainResults = async (answers, quizQuestions) => {
     let correctCount = 0;
     const topicScores = {};
-    
+
     Object.entries(answers).forEach(([questionIndex, answerIndex]) => {
       const question = quizQuestions[questionIndex];
       const isCorrect = answerIndex === question.correctAnswer;
       if (isCorrect) correctCount++;
-      
+
       if (!topicScores[question.topic]) {
         topicScores[question.topic] = { correct: 0, total: 0 };
       }
       topicScores[question.topic].total++;
       if (isCorrect) topicScores[question.topic].correct++;
     });
-    
+
     const score = Math.round((correctCount / quizQuestions.length) * 100);
     const percentile = Math.min(95, Math.max(5, score + Math.floor(Math.random() * 10) - 5));
-    
+
     const weakAreas = Object.entries(topicScores)
       .map(([topic, scores]) => ({
         topic,
@@ -162,21 +169,73 @@ const CareerQuizApp = () => {
       }))
       .filter(area => area.accuracy < 60)
       .sort((a, b) => a.accuracy - b.accuracy);
-    
-    setDomainResults({ score, percentile, correctCount, totalQuestions: quizQuestions.length, weakAreas, answers });
+
+    const resultsData = { score, percentile, correctCount, totalQuestions: quizQuestions.length, weakAreas, answers };
+    setDomainResults(resultsData);
+
+    // Store achievement on blockchain if wallet is connected
+    if (walletAddress && score >= 50) {
+      try {
+        await algorandAPI.storeAchievement(walletAddress, {
+          career: selectedCareer,
+          score: score,
+          percentile: percentile,
+          weakAreas: weakAreas.map(area => area.topic)
+        });
+      } catch (error) {
+        console.error('Error storing achievement:', error);
+      }
+    }
+
     setCurrentStep('domainResults');
+  };
+
+  const mintNFTBadge = async () => {
+    if (!walletAddress) {
+      alert('Please connect your wallet first!');
+      return;
+    }
+
+    setMintingBadge(true);
+    try {
+      const response = await algorandAPI.mintBadge(
+        walletAddress,
+        selectedCareer,
+        domainResults.score,
+        domainResults.percentile
+      );
+
+      if (response.success) {
+        setBadgeMinted(true);
+        alert(`Badge minted successfully! Asset ID: ${response.data.assetId}`);
+      }
+    } catch (error) {
+      console.error('Error minting badge:', error);
+      alert('Failed to mint badge. Make sure your wallet has enough ALGO for transaction fees.');
+    } finally {
+      setMintingBadge(false);
+    }
   };
 
   const progress = ((currentQuestion + 1) / (currentStep === 'domainQuiz' ? domainQuizzes[selectedCareer].length : questions.length)) * 100;
 
   if (currentStep === 'welcome') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex items-center justify-center p-4 relative overflow-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 flex flex-col p-4 relative overflow-hidden">
+        {/* Header with Wallet */}
+        <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">
+          <div className="flex items-center gap-3">
+            <Sparkles className="w-8 h-8 text-purple-400" />
+            <span className="text-xl font-bold text-white">Cred-AI-ble</span>
+          </div>
+          <WalletConnect />
+        </div>
+
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
         </div>
-        <div className="max-w-3xl w-full relative">
+        <div className="max-w-3xl w-full relative mx-auto flex-1 flex items-center justify-center">
           <div className="bg-slate-800/50 backdrop-blur-xl rounded-3xl shadow-2xl border border-slate-700/50 p-8 md:p-12">
             <div className="text-center">
               <div className="inline-flex items-center justify-center mb-6">
@@ -206,10 +265,18 @@ const CareerQuizApp = () => {
                   <div className="text-sm text-slate-400">Tailored insights</div>
                 </div>
               </div>
-              <button onClick={() => setCurrentStep('quiz')} className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-10 py-5 rounded-2xl font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105">
-                <span>Begin Your Journey</span>
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
+              <div className="flex flex-col gap-4">
+                <button onClick={() => setCurrentStep('quiz')} className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white px-10 py-5 rounded-2xl font-semibold text-lg hover:shadow-2xl hover:shadow-purple-500/50 transition-all duration-300 hover:scale-105">
+                  <span>Begin Your Journey</span>
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </button>
+                {walletAddress && (
+                  <button onClick={() => setCurrentStep('badges')} className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-10 py-5 rounded-2xl font-semibold text-lg hover:shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105">
+                    <Trophy className="w-5 h-5" />
+                    <span>View My Badges</span>
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>
@@ -463,21 +530,108 @@ const CareerQuizApp = () => {
             </div>
           )}
 
+          {/* Mint NFT Badge Section */}
+          {walletAddress && domainResults.score >= 50 && (
+            <div className="bg-gradient-to-br from-yellow-500/10 to-orange-500/10 backdrop-blur-xl rounded-3xl border border-yellow-500/30 p-10 text-center mb-8">
+              <Award className="w-16 h-16 text-yellow-400 mx-auto mb-4" />
+              <h3 className="text-3xl font-bold text-white mb-3">Claim Your NFT Badge!</h3>
+              <p className="text-slate-300 mb-6 text-lg max-w-2xl mx-auto">
+                You scored {domainResults.score}%! Mint an NFT badge to permanently store this achievement on the Algorand blockchain.
+              </p>
+              {badgeMinted ? (
+                <div className="inline-flex items-center gap-3 bg-emerald-500/20 border border-emerald-500/50 text-emerald-400 px-8 py-4 rounded-2xl font-semibold">
+                  <CheckCircle className="w-6 h-6" />
+                  <span>Badge Minted Successfully!</span>
+                </div>
+              ) : (
+                <button
+                  onClick={mintNFTBadge}
+                  disabled={mintingBadge}
+                  className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-10 py-5 rounded-2xl font-semibold text-lg hover:shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {mintingBadge ? (
+                    <>
+                      <div className="w-6 h-6 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Minting NFT Badge...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Award className="w-6 h-6" />
+                      <span>Mint NFT Badge</span>
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
+          )}
+
+          {!walletAddress && domainResults.score >= 50 && (
+            <div className="bg-purple-500/10 backdrop-blur-xl rounded-3xl border border-purple-500/30 p-10 text-center mb-8">
+              <Award className="w-16 h-16 text-purple-400 mx-auto mb-4" />
+              <h3 className="text-2xl font-bold text-white mb-3">Great Score! Connect Your Wallet</h3>
+              <p className="text-slate-300 mb-6">
+                Connect your Algorand wallet to mint an NFT badge and permanently store your achievement on the blockchain.
+              </p>
+              <WalletConnect />
+            </div>
+          )}
+
           <div className="bg-slate-800/50 backdrop-blur-xl rounded-3xl border border-slate-700/50 p-10 text-center">
             <h3 className="text-3xl font-bold text-white mb-4">What's Next?</h3>
             <p className="text-slate-300 mb-8 text-lg max-w-2xl mx-auto">
               Based on your results, we'll create a personalized learning roadmap with courses, tutorials, and resources to help you master {selectedCareer}.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <button onClick={() => { setCurrentStep('results'); setDomainResults(null); }} className="group inline-flex items-center gap-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105">
+              <button onClick={() => { setCurrentStep('results'); setDomainResults(null); setBadgeMinted(false); }} className="group inline-flex items-center gap-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105">
                 <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
                 <span>Back to Career Results</span>
               </button>
-              <button onClick={() => { setCurrentStep('welcome'); setCurrentQuestion(0); setAnswers({}); setResults(null); setDomainResults(null); }} className={`inline-flex items-center gap-3 bg-gradient-to-r ${careerInfo.color} text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105`}>
+              {walletAddress && (
+                <button onClick={() => setCurrentStep('badges')} className="group inline-flex items-center gap-3 bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105">
+                  <Trophy className="w-5 h-5" />
+                  <span>View My Badges</span>
+                </button>
+              )}
+              <button onClick={() => { setCurrentStep('welcome'); setCurrentQuestion(0); setAnswers({}); setResults(null); setDomainResults(null); setBadgeMinted(false); }} className={`inline-flex items-center gap-3 bg-gradient-to-r ${careerInfo.color} text-white px-8 py-4 rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 hover:scale-105`}>
                 <Rocket className="w-5 h-5" />
                 <span>Start Over</span>
               </button>
             </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Badges view page
+  if (currentStep === 'badges') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-4 py-12 relative overflow-hidden">
+        {/* Header */}
+        <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center z-10">
+          <div className="flex items-center gap-3">
+            <Sparkles className="w-8 h-8 text-purple-400" />
+            <span className="text-xl font-bold text-white">Cred-AI-ble</span>
+          </div>
+          <WalletConnect />
+        </div>
+
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-6xl mx-auto relative pt-24">
+          <BadgeDisplay />
+
+          <div className="mt-8 text-center">
+            <button
+              onClick={() => setCurrentStep('welcome')}
+              className="group inline-flex items-center gap-3 bg-gradient-to-r from-slate-600 to-slate-700 hover:from-slate-500 hover:to-slate-600 text-white px-8 py-4 rounded-2xl font-semibold transition-all duration-300 hover:scale-105"
+            >
+              <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
+              <span>Back to Home</span>
+            </button>
           </div>
         </div>
       </div>

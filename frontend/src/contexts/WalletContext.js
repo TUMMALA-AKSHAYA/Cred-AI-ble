@@ -58,7 +58,7 @@ export const WalletProvider = ({ children }) => {
   const fetchBalance = async (address) => {
     try {
       const accountInfo = await algodClient.accountInformation(address).do();
-      const algoBalance = accountInfo.amount / 1000000;
+      const algoBalance = Number(accountInfo.amount) / 1000000;
       setBalance(algoBalance);
     } catch (error) {
       console.error('Error fetching balance:', error);
