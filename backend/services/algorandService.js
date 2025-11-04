@@ -282,14 +282,14 @@ const getUserBadges = async (userAddress) => {
     
     const badges = [];
     for (const asset of assets) {
-      if (asset.amount > 0) {
+      if (Number(asset.amount) > 0) {
         const assetInfo = await algodClient.getAssetByID(asset['asset-id']).do();
         if (assetInfo.params['unit-name'] === 'BADGE') {
           badges.push({
             assetId: asset['asset-id'],
             name: assetInfo.params.name,
             url: assetInfo.params.url,
-            amount: asset.amount
+            amount: Number(asset.amount)
           });
         }
       }
