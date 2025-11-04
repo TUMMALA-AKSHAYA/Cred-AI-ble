@@ -42,7 +42,7 @@ const getBalance = async (address) => {
   try {
     const accountInfo = await algodClient.accountInformation(address).do();
     return {
-      balance: accountInfo.amount / 1000000, // Convert microAlgos to Algos
+      balance: Number(accountInfo.amount) / 1000000, // Convert microAlgos to Algos
       assets: accountInfo.assets || []
     };
   } catch (error) {
