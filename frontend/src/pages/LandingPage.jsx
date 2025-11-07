@@ -5,7 +5,7 @@ export const LandingPage = ({ onStartQuiz }) => {
   return (
     <div className="min-h-screen bg-white dark:bg-black transition-colors duration-500" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.01em' }}>
       {/* Premium Glass Morphism Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0E0F13]/80 dark:bg-[#0E0F13]/90 backdrop-blur-xl border-b border-white/10">
         <Navigation />
       </nav>
 
@@ -38,7 +38,7 @@ export const LandingPage = ({ onStartQuiz }) => {
             </div>
 
             {/* Hero Headline with 3D Depth */}
-            <h1 className="relative text-6xl md:text-8xl font-bold text-gray-900 dark:text-white leading-[1.1] tracking-tight mb-8">
+            <h1 className="relative text-5xl md:text-6xl font-bold text-gray-900 dark:text-white leading-[1.1] tracking-tight md:tracking-[-0.01em] mb-8">
               <span className="block">Discover Your Career.</span>
               <span className="block mt-2 bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-600 dark:from-indigo-400 dark:via-violet-400 dark:to-indigo-400 bg-clip-text text-transparent animate-gradient-x">
                 Earn Verified Credentials.
@@ -54,13 +54,13 @@ export const LandingPage = ({ onStartQuiz }) => {
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <button
                 onClick={onStartQuiz}
-                className="group relative px-8 py-5 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-semibold rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-indigo-500/50 active:scale-95"
+                className="group relative px-8 py-4 bg-gradient-to-r from-indigo-600 to-violet-600 text-white text-lg font-semibold rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-indigo-500/30 active:scale-95 backdrop-blur-sm"
                 style={{
                   transform: 'translateZ(0)',
                   transformStyle: 'preserve-3d',
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px) translateZ(20px) rotateX(5deg)';
+                  e.currentTarget.style.transform = 'translateY(-4px) translateZ(10px) rotateX(2deg)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0) translateZ(0) rotateX(0deg)';
@@ -75,7 +75,7 @@ export const LandingPage = ({ onStartQuiz }) => {
                 <div className="absolute inset-0 bg-gradient-to-r from-violet-600 to-indigo-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </button>
 
-              <button className="group px-8 py-5 bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white text-lg font-semibold rounded-2xl transition-all duration-300 hover:scale-105 hover:bg-white/20 dark:hover:bg-white/10 hover:shadow-xl active:scale-95">
+              <button className="group px-8 py-4 bg-white/10 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-gray-100 text-lg font-semibold rounded-xl transition-all duration-300 hover:scale-105 hover:bg-white/20 dark:hover:bg-white/10 hover:shadow-lg active:scale-95">
                 Watch Demo
               </button>
             </div>
