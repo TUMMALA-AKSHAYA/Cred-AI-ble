@@ -5,11 +5,14 @@
 @layer base {
   body {
     @apply font-sans antialiased;
-    font-feature-settings: 'rlig' 1 'calt' 1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    letter-spacing: -0.01em;
+    font-feature-settings: 'rlig' 1, 'calt' 1, 'ss01' 1;
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
+    letter-spacing: -0.02em;
   }
 }
 
