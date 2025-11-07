@@ -403,30 +403,32 @@ export const RoadmapPage = ({ onBack }) => {
 
                   {/* Focus Areas */}
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-3">FOCUS AREAS</h4>
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">FOCUS AREAS</h4>
                     <div className="flex flex-wrap gap-2">
                       {phase.focus.map((item, idx) => (
-                        <Badge key={idx} variant="primary">{item}</Badge>
+                        <span key={idx} className="px-4 py-2 bg-indigo-100 dark:bg-indigo-900/30 text-indigo-900 dark:text-indigo-300 rounded-xl font-medium text-sm border border-indigo-200 dark:border-indigo-800">
+                          {item}
+                        </span>
                       ))}
                     </div>
                   </div>
 
                   {/* Resources */}
                   <div className="mb-6">
-                    <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-3">RECOMMENDED RESOURCES</h4>
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">RECOMMENDED RESOURCES</h4>
                     <div className="space-y-3">
                       {phase.resources.map((resource, idx) => (
-                        <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900 rounded-xl">
+                        <div key={idx} className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-900/50 rounded-xl border border-gray-200 dark:border-gray-800">
                           <div className="flex items-center gap-3">
                             <span className="text-2xl">
                               {resource.type === 'Course' ? '📚' : resource.type === 'Book' ? '📖' : resource.type === 'Practice' ? '💻' : '📝'}
                             </span>
                             <div>
-                              <p className="font-semibold text-gray-900 dark:text-white">{resource.name}</p>
+                              <p className="font-semibold text-gray-900 dark:text-gray-100">{resource.name}</p>
                               <p className="text-sm text-gray-600 dark:text-gray-400">{resource.platform}</p>
                             </div>
                           </div>
-                          <Badge variant="teal">{resource.hours}</Badge>
+                          <span className="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-900 dark:text-teal-300 rounded-lg text-sm font-medium">{resource.hours}</span>
                         </div>
                       ))}
                     </div>
@@ -434,10 +436,10 @@ export const RoadmapPage = ({ onBack }) => {
 
                   {/* Projects */}
                   <div>
-                    <h4 className="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-3">PROJECTS TO BUILD</h4>
+                    <h4 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">PROJECTS TO BUILD</h4>
                     <ul className="space-y-2">
                       {phase.projects.map((project, idx) => (
-                        <li key={idx} className="flex items-start gap-2 text-gray-700 dark:text-gray-300">
+                        <li key={idx} className="flex items-start gap-2 text-gray-800 dark:text-gray-200">
                           <span className="text-indigo-600 dark:text-indigo-400 mt-1">▸</span>
                           <span>{project}</span>
                         </li>
