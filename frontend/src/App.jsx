@@ -3,6 +3,7 @@ import { QuizProvider } from './contexts/QuizContext';
 import { LandingPage } from './pages/LandingPage';
 import { QuizPage } from './pages/QuizPage';
 import { DashboardPage } from './pages/DashboardPage';
+import { RoadmapPage } from './pages/RoadmapPage';
 import { Moon, Sun } from 'lucide-react';
 
 function App() {
@@ -11,6 +12,8 @@ function App() {
 
   const handleStartQuiz = () => setCurrentPage('quiz');
   const handleCompleteQuiz = () => setCurrentPage('dashboard');
+  const handleViewRoadmap = () => setCurrentPage('roadmap');
+  const handleBackToDashboard = () => setCurrentPage('dashboard');
   const handleStartNewQuiz = () => {
     setCurrentPage('quiz');
   };
@@ -32,7 +35,8 @@ function App() {
         {/* App Content */}
         {currentPage === 'landing' && <LandingPage onStartQuiz={handleStartQuiz} />}
         {currentPage === 'quiz' && <QuizPage onComplete={handleCompleteQuiz} />}
-        {currentPage === 'dashboard' && <DashboardPage onStartNewQuiz={handleStartNewQuiz} />}
+        {currentPage === 'dashboard' && <DashboardPage onStartNewQuiz={handleStartNewQuiz} onViewRoadmap={handleViewRoadmap} />}
+        {currentPage === 'roadmap' && <RoadmapPage onBack={handleBackToDashboard} />}
       </div>
     </QuizProvider>
   );

@@ -226,6 +226,71 @@ export const LandingPage = ({ onStartQuiz }) => {
           </Card>
         </Container>
       </section>
+
+      {/* Premium Footer */}
+      <footer className="relative py-16 bg-white dark:bg-black border-t border-gray-200/50 dark:border-white/10">
+        <Container>
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            {/* Brand */}
+            <div className="md:col-span-1">
+              <h3 className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-violet-600 bg-clip-text text-transparent mb-4">
+                Cred-AI-ble
+              </h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                AI-powered career discovery with blockchain-verified credentials for the future workforce.
+              </p>
+            </div>
+
+            {/* Links */}
+            <div>
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Product</h4>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#features" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Features</a></li>
+                <li><a href="#how-it-works" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">How It Works</a></li>
+                <li><a href="#credentials" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Credentials</a></li>
+                <li><a href="#careers" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Careers</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Company</h4>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#about" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">About</a></li>
+                <li><a href="#blog" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Blog</a></li>
+                <li><a href="#careers" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Careers</a></li>
+                <li><a href="#contact" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contact</a></li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Legal</h4>
+              <ul className="space-y-3 text-sm">
+                <li><a href="#privacy" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Privacy</a></li>
+                <li><a href="#terms" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Terms</a></li>
+                <li><a href="#security" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Security</a></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Bar */}
+          <div className="pt-8 border-t border-gray-200/50 dark:border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-600 dark:text-gray-400">
+              © 2025 Cred-AI-ble. Built for AlgoBharat 2025. All rights reserved.
+            </p>
+            <div className="flex items-center gap-6">
+              <a href="#twitter" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <span className="text-xl">𝕏</span>
+              </a>
+              <a href="#linkedin" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <span className="text-xl">in</span>
+              </a>
+              <a href="#github" className="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+                <span className="text-xl">⚡</span>
+              </a>
+            </div>
+          </div>
+        </Container>
+      </footer>
     </div>
   );
 };
