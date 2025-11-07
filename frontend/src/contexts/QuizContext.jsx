@@ -154,4 +154,4 @@ export const QuizProvider = ({ children }) => {
       {children}
     </QuizContext.Provider>
   );
-};
+}

@@ -141,5 +141,4 @@ export const DashboardPage = ({ onStartNewQuiz }) => {
       </Container>
     </div>
   );
-};
-export default DashboardPage;
+}

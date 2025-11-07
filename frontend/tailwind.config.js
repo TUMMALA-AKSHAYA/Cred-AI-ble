@@ -1,4 +1,5 @@
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -17,9 +18,9 @@ export default {
         },
       },
       boxShadow: {
-        elevation1: '0 1px 2px rgba(0, 0, 0, 0.05)',
-        elevation2: '0 2px 8px rgba(0, 0, 0, 0.08)',
-        elevation3: '0 8px 16px rgba(0, 0, 0, 0.1)',
+        'elevation-1': '0 1px 2px rgba(0, 0, 0, 0.05)',
+        'elevation-2': '0 2px 8px rgba(0, 0, 0, 0.08)',
+        'elevation-3': '0 8px 16px rgba(0, 0, 0, 0.1)',
       },
     },
   },
