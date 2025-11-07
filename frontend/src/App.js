@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { ArrowRight, ArrowLeft, Sparkles, Brain, Code, TrendingUp, Zap, Target, Rocket, Award, CheckCircle, XCircle, TrendingDown, BookOpen, Trophy } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ArrowLeft, Sparkles, Brain, Code, TrendingUp, Zap, Target, Rocket, Award, CheckCircle, XCircle, TrendingDown, BookOpen, Trophy, Sun, Moon } from 'lucide-react';
 import { useWallet } from './contexts/WalletContext';
 import { algorandAPI } from './services/algorandApi';
 import WalletConnect from './components/WalletConnect';
@@ -16,6 +16,26 @@ const CareerQuizApp = () => {
   const [domainResults, setDomainResults] = useState(null);
   const [mintingBadge, setMintingBadge] = useState(false);
   const [badgeMinted, setBadgeMinted] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      setDarkMode(true);
+      document.documentElement.classList.add('dark');
+    }
+  }, []);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    if (!darkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  };
 
   const domainQuizzes = {
     "AI/Machine Learning": [
@@ -230,6 +250,19 @@ const CareerQuizApp = () => {
           </div>
           <WalletConnect />
         </div>
+
+        {/* Dark Mode Toggle - Fixed Bottom Right */}
+        <button
+          onClick={toggleDarkMode}
+          className="fixed bottom-8 right-8 z-50 p-4 bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 rounded-2xl hover:bg-slate-700/80 transition-all duration-300 hover:scale-110 shadow-xl hover:shadow-2xl group"
+          aria-label="Toggle dark mode"
+        >
+          {darkMode ? (
+            <Sun className="w-6 h-6 text-yellow-400 group-hover:rotate-180 transition-transform duration-500" />
+          ) : (
+            <Moon className="w-6 h-6 text-blue-400 group-hover:rotate-180 transition-transform duration-500" />
+          )}
+        </button>
 
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
