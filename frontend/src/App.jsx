@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { QuizProvider } from './contexts/QuizContext';
+import { WalletProvider } from './contexts/WalletContext';
 import { LandingPage } from './pages/LandingPage';
 import { QuizPage } from './pages/QuizPage';
 import { DashboardPage } from './pages/DashboardPage';
@@ -19,8 +20,9 @@ function App() {
   };
 
   return (
-    <QuizProvider>
-      <div className={`${darkMode ? "dark bg-black text-white" : "bg-white text-black"} min-h-screen transition-all duration-500`}>
+    <WalletProvider>
+      <QuizProvider>
+        <div className={`${darkMode ? "dark bg-black text-white" : "bg-white text-black"} min-h-screen transition-all duration-500`}>
 
         {/* Dark Mode Toggle Button */}
         <button
@@ -38,7 +40,8 @@ function App() {
         {currentPage === 'dashboard' && <DashboardPage onStartNewQuiz={handleStartNewQuiz} onViewRoadmap={handleViewRoadmap} />}
         {currentPage === 'roadmap' && <RoadmapPage onBack={handleBackToDashboard} />}
       </div>
-    </QuizProvider>
+      </QuizProvider>
+    </WalletProvider>
   );
 }
 
