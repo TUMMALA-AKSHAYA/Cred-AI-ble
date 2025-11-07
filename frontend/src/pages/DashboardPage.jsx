@@ -1,15 +1,81 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Card, Container, Badge, ProgressBar } from '../components';
 import { useQuiz } from '../hooks/useQuiz';
+import { useWallet } from '../contexts/WalletContext';
+import { algorandAPI } from '../services/algorandApi';
 
 export const DashboardPage = ({ onStartNewQuiz, onViewRoadmap }) => {
-  const { results, userPoints, userStreak, userBadges } = useQuiz();
+  const { results, userPoints, userStreak, userBadges, domainResults } = useQuiz();
+  const { walletAddress } = useWallet();
+  const [minting, setMinting] = useState(false);
+  const [mintedNFT, setMintedNFT] = useState(null);
+  const [userNFTs, setUserNFTs] = useState([]);
+  const [loadingNFTs, setLoadingNFTs] = useState(false);
+
+  // Fetch user's NFT badges when wallet is connected
+  useEffect(() => {
+    if (walletAddress) {
+      fetchUserNFTs();
+    }
+  }, [walletAddress]);
+
+  const fetchUserNFTs = async () => {
+    if (!walletAddress) return;
+    setLoadingNFTs(true);
+    try {
+      const response = await algorandAPI.getUserBadges(walletAddress);
+      if (response.success) {
+        setUserNFTs(response.data);
+      }
+    } catch (error) {
+      console.error('Error fetching NFTs:', error);
+    } finally {
+      setLoadingNFTs(false);
+    }
+  };
+
+  const handleMintNFT = async () => {
+    if (!walletAddress) {
+      alert('Please connect your wallet first!');
+      return;
+    }
+
+    if (!results || !results[0]) {
+      alert('No quiz results found!');
+      return;
+    }
+
+    setMinting(true);
+    try {
+      const score = domainResults ? domainResults.score : 85;
+      const percentile = domainResults ? domainResults.percentile : 82;
+
+      const response = await algorandAPI.mintBadge(
+        walletAddress,
+        results[0].career,
+        score,
+        percentile
+      );
+
+      if (response.success) {
+        setMintedNFT(response.data);
+        alert(`🎉 NFT Badge Minted Successfully!\n\nAsset ID: ${response.data.assetId}\nTransaction: ${response.data.txId}\n\nView on Explorer: ${response.data.explorerUrl}`);
+        // Refresh NFTs after minting
+        await fetchUserNFTs();
+      }
+    } catch (error) {
+      console.error('Error minting NFT:', error);
+      alert('Failed to mint NFT. Please try again.');
+    } finally {
+      setMinting(false);
+    }
+  };
 
   const badges = [
     { id: 1, name: 'Career Explorer', icon: '🔍', description: 'Complete your first quiz', earned: true },
     { id: 2, name: 'Quick Learner', icon: '⚡', description: 'Score 80% or higher', earned: true },
     { id: 3, name: 'Skill Master', icon: '🏆', description: 'Complete 3 quizzes', earned: true },
-    { id: 4, name: 'Blockchain Pro', icon: '⛓️', description: 'Verify on-chain', earned: false },
+    { id: 4, name: 'Blockchain Pro', icon: '⛓️', description: 'Verify on-chain', earned: userNFTs.length > 0 },
   ];
 
   const leaderboard = [
@@ -73,9 +139,57 @@ export const DashboardPage = ({ onStartNewQuiz, onViewRoadmap }) => {
                   <Badge key={skill} variant="teal">{skill}</Badge>
                 ))}
               </div>
-              <Button size="lg" className="w-full" onClick={onViewRoadmap}>
-                View Full Roadmap →
-              </Button>
+              <div className="grid md:grid-cols-2 gap-4">
+                <Button size="lg" onClick={onViewRoadmap}>
+                  View Full Roadmap →
+                </Button>
+                <Button
+                  variant="primary"
+                  size="lg"
+                  onClick={handleMintNFT}
+                  disabled={minting || !walletAddress}
+                >
+                  {minting ? '⏳ Minting...' : walletAddress ? '⛓️ Mint NFT Badge' : '🔗 Connect Wallet First'}
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* NFT Badges Section */}
+        {walletAddress && (
+          <div className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">Your Blockchain Credentials</h2>
+            <Card variant="glass" className="border-2 border-indigo-500/20">
+              {loadingNFTs ? (
+                <div className="text-center py-8">
+                  <div className="text-4xl mb-4">⏳</div>
+                  <p className="text-gray-600 dark:text-gray-400">Loading your NFT badges...</p>
+                </div>
+              ) : userNFTs.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {userNFTs.map((nft, idx) => (
+                    <div key={idx} className="p-6 bg-gradient-to-br from-indigo-50 to-violet-50 dark:from-indigo-900/20 dark:to-violet-900/20 rounded-xl border border-indigo-200 dark:border-indigo-800">
+                      <div className="text-5xl mb-4 text-center">🏆</div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 text-center">{nft.name}</h3>
+                      <div className="text-center mb-4">
+                        <Badge variant="success" icon="✓">Verified On-Chain</Badge>
+                      </div>
+                      <p className="text-xs text-gray-600 dark:text-gray-400 text-center break-all">
+                        Asset ID: {nft.assetId}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12">
+                  <div className="text-6xl mb-4">⛓️</div>
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2">No NFT Badges Yet</h3>
+                  <p className="text-gray-600 dark:text-gray-400 mb-6">
+                    Mint your first blockchain-verified credential above!
+                  </p>
+                </div>
+              )}
             </Card>
           </div>
         )}
