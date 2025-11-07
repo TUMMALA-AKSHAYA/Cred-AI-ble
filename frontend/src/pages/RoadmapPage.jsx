@@ -3,11 +3,11 @@ import { Button, Card, Container, Badge } from '../components';
 import { useQuiz } from '../hooks/useQuiz';
 
 export const RoadmapPage = ({ onBack }) => {
-  const { results, domainResults } = useQuiz();
+  const { results, domainResults, selectedCareer } = useQuiz();
 
   if (!results || !results[0]) return null;
 
-  const career = results[0].career;
+  const career = selectedCareer || results[0].career;
 
   // Roadmap data for each career
   const roadmaps = {
@@ -346,34 +346,93 @@ export const RoadmapPage = ({ onBack }) => {
         <div className="mb-16">
           <Card variant="glass" className="border-2 border-indigo-500/20">
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Your Skill Analysis</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-3xl">💪</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Your Strengths</h3>
-                </div>
-                <div className="space-y-2">
-                  {roadmap.skills.strong.map((skill, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <Badge variant="success" icon="✓">{skill}</Badge>
+
+            {domainResults ? (
+              <>
+                {/* Show actual quiz results */}
+                <div className="mb-8 text-center">
+                  <div className="inline-flex items-center gap-4 p-6 bg-gradient-to-br from-indigo-500/10 to-violet-500/10 rounded-2xl">
+                    <div>
+                      <div className="text-4xl font-bold text-indigo-600 dark:text-indigo-400">{domainResults.score}%</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Your Score</div>
                     </div>
-                  ))}
+                    <div className="w-px h-12 bg-gray-300 dark:bg-gray-700"></div>
+                    <div>
+                      <div className="text-4xl font-bold text-violet-600 dark:text-violet-400">{domainResults.percentile}th</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">Percentile</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="text-3xl">💪</div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">Your Strengths</h3>
+                    </div>
+                    <div className="space-y-2">
+                      {domainResults.strongAreas && domainResults.strongAreas.length > 0 ? (
+                        domainResults.strongAreas.map((area, idx) => (
+                          <div key={idx} className="flex items-center justify-between p-3 bg-green-50 dark:bg-green-900/10 rounded-xl border border-green-200 dark:border-green-800">
+                            <span className="text-gray-900 dark:text-gray-100 font-medium">{area.topic}</span>
+                            <span className="text-green-700 dark:text-green-400 font-bold">{area.accuracy}%</span>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-600 dark:text-gray-400 italic">Complete the domain quiz to see your strengths!</p>
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="text-3xl">🎯</div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white">Focus Areas</h3>
+                    </div>
+                    <div className="space-y-2">
+                      {domainResults.weakAreas && domainResults.weakAreas.length > 0 ? (
+                        domainResults.weakAreas.map((area, idx) => (
+                          <div key={idx} className="flex items-center justify-between p-3 bg-orange-50 dark:bg-orange-900/10 rounded-xl border border-orange-200 dark:border-orange-800">
+                            <span className="text-gray-900 dark:text-gray-100 font-medium">{area.topic}</span>
+                            <span className="text-orange-700 dark:text-orange-400 font-bold">{area.accuracy}%</span>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-600 dark:text-gray-400 italic">Great job! No weak areas detected.</p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </>
+            ) : (
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-3xl">💪</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Your Strengths</h3>
+                  </div>
+                  <div className="space-y-2">
+                    {roadmap.skills.strong.map((skill, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <Badge variant="success" icon="✓">{skill}</Badge>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="text-3xl">🎯</div>
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">Focus Areas</h3>
+                  </div>
+                  <div className="space-y-2">
+                    {roadmap.skills.weak.map((skill, idx) => (
+                      <div key={idx} className="flex items-center gap-2">
+                        <Badge variant="warning" icon="⚡">{skill}</Badge>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="text-3xl">🎯</div>
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">Focus Areas</h3>
-                </div>
-                <div className="space-y-2">
-                  {roadmap.skills.weak.map((skill, idx) => (
-                    <div key={idx} className="flex items-center gap-2">
-                      <Badge variant="warning" icon="⚡">{skill}</Badge>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            )}
           </Card>
         </div>
 
