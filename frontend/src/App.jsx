@@ -18,10 +18,10 @@ function App() {
   return (
     <QuizProvider>
       <div className={darkMode ? 'dark' : ''}>
-        {/* Dark Mode Toggle - Positioned Above Signup Bar */}
+        {/* Dark Mode Toggle - Positioned Below Navigation Bar */}
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="fixed bottom-24 right-8 z-50 p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-110 border-2 border-gray-200 dark:border-gray-600"
+          className="fixed top-24 right-8 z-50 p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-110 border-2 border-gray-200 dark:border-gray-600"
           title="Toggle dark mode"
           aria-label="Toggle dark mode"
         >
