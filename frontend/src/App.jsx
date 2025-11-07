@@ -17,27 +17,22 @@ function App() {
 
   return (
     <QuizProvider>
-      <div className={darkMode ? 'dark' : ''}>
-        {/* Dark Mode Toggle - Positioned Below Navigation Bar */}
+      <div className={`${darkMode ? "dark bg-black text-white" : "bg-white text-black"} min-h-screen transition-all duration-500`}>
+
+        {/* Dark Mode Toggle Button */}
         <button
           onClick={() => setDarkMode(!darkMode)}
-          className="fixed top-24 right-8 z-50 p-4 rounded-2xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-2xl hover:shadow-3xl hover:scale-110 border-2 border-gray-200 dark:border-gray-600"
+          className="fixed top-20 right-6 z-50 p-3 rounded-2xl bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all duration-300 shadow-xl hover:scale-105 border border-gray-200 dark:border-gray-600"
           title="Toggle dark mode"
           aria-label="Toggle dark mode"
         >
-          {darkMode ? (
-            <Sun size={24} className="text-yellow-400 transition-transform duration-500 hover:rotate-180" />
-          ) : (
-            <Moon size={24} className="text-indigo-600 transition-transform duration-500 hover:rotate-180" />
-          )}
+          {darkMode ? "🌙" : "☀️"}
         </button>
 
         {/* App Content */}
-        <div className={`${darkMode ? 'dark' : ''}`}>
-          {currentPage === 'landing' && <LandingPage onStartQuiz={handleStartQuiz} />}
-          {currentPage === 'quiz' && <QuizPage onComplete={handleCompleteQuiz} />}
-          {currentPage === 'dashboard' && <DashboardPage onStartNewQuiz={handleStartNewQuiz} />}
-        </div>
+        {currentPage === 'landing' && <LandingPage onStartQuiz={handleStartQuiz} />}
+        {currentPage === 'quiz' && <QuizPage onComplete={handleCompleteQuiz} />}
+        {currentPage === 'dashboard' && <DashboardPage onStartNewQuiz={handleStartNewQuiz} />}
       </div>
     </QuizProvider>
   );
