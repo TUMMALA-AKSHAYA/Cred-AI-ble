@@ -6,4 +6,4 @@ export const SPACING = {
   xl: '32px',
   '2xl': '48px',
   '3xl': '64px',
-};
+}
