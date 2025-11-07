@@ -3,9 +3,9 @@ import { Button, Card, Container, Navigation, Badge } from '../components';
 
 export const LandingPage = ({ onStartQuiz }) => {
   return (
-    <div className="min-h-screen bg-white dark:bg-black transition-colors duration-500">
-      {/* Glass Morphism Navbar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-white/80 dark:bg-black/80 border-b border-gray-200/20 dark:border-white/10">
+    <div className="min-h-screen bg-white dark:bg-black transition-colors duration-500" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '-0.01em' }}>
+      {/* Premium Glass Morphism Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
         <Navigation />
       </nav>
 
@@ -93,6 +93,89 @@ export const LandingPage = ({ onStartQuiz }) => {
               <div className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-700"></div>
               <span className="text-sm font-medium text-gray-600 dark:text-gray-400">🔗 1,200+ verified credentials minted on-chain</span>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* Value Proposition Grid */}
+      <section className="relative py-32 bg-white dark:bg-black overflow-hidden">
+        {/* Background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-500/5 to-transparent"></div>
+
+        <Container className="relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight">
+              Why Choose Cred-AI-ble?
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light">
+              The future of career discovery powered by AI and secured on the blockchain.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: '🧠',
+                title: 'AI-Powered Insights',
+                description: 'Advanced psychometric algorithms analyze your personality traits and match you with ideal career paths.',
+              },
+              {
+                icon: '⛓️',
+                title: 'Blockchain Verified',
+                description: 'Earn immutable NFT credentials on Algorand blockchain that prove your skills forever.',
+              },
+              {
+                icon: '⚡',
+                title: 'Lightning Fast',
+                description: 'Complete your career assessment in just 5 minutes and get instant personalized results.',
+              },
+              {
+                icon: '🎯',
+                title: 'Precision Matching',
+                description: 'Get matched with careers based on 20+ personality dimensions and industry requirements.',
+              },
+              {
+                icon: '🔒',
+                title: 'Privacy First',
+                description: 'Your data is encrypted and secured. Only you control what gets stored on-chain.',
+              },
+              {
+                icon: '🌐',
+                title: 'Globally Recognized',
+                description: 'Share your verified credentials with employers worldwide. Trusted by leading companies.',
+              },
+            ].map((feature, idx) => (
+              <div
+                key={idx}
+                className="group relative p-8 bg-white dark:bg-black rounded-3xl border border-gray-200 dark:border-white/10 hover:border-indigo-500/50 dark:hover:border-indigo-500/50 transition-all duration-500 hover:scale-105 hover:-translate-y-2"
+                style={{
+                  transformStyle: 'preserve-3d',
+                }}
+              >
+                {/* Gradient glow on hover */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-indigo-500/0 via-violet-500/0 to-indigo-500/0 group-hover:from-indigo-500/10 group-hover:via-violet-500/5 group-hover:to-indigo-500/10 transition-all duration-500"></div>
+
+                {/* Gradient border glow */}
+                <div className="absolute -inset-[1px] rounded-3xl bg-gradient-to-br from-indigo-500/0 via-violet-500/0 to-indigo-500/0 group-hover:from-indigo-500/50 group-hover:via-violet-500/30 group-hover:to-indigo-500/50 opacity-0 group-hover:opacity-100 blur-xl transition-all duration-500"></div>
+
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">
+                    {feature.icon}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 tracking-tight">
+                    {feature.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
