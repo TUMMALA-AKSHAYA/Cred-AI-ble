@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, Container, Badge, ProgressBar } from '../components';
 import { useQuiz } from '../hooks/useQuiz';
 
-export const DashboardPage = ({ onStartNewQuiz }) => {
+export const DashboardPage = ({ onStartNewQuiz, onViewRoadmap }) => {
   const { results, userPoints, userStreak, userBadges } = useQuiz();
 
   const badges = [
@@ -73,7 +73,7 @@ export const DashboardPage = ({ onStartNewQuiz }) => {
                   <Badge key={skill} variant="teal">{skill}</Badge>
                 ))}
               </div>
-              <Button size="lg" className="w-full">
+              <Button size="lg" className="w-full" onClick={onViewRoadmap}>
                 View Full Roadmap →
               </Button>
             </Card>
