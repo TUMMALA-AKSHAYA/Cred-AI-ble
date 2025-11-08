@@ -11,8 +11,8 @@ export const Button = ({
   
   const variants = {
     primary: 'bg-gradient-to-r from-indigo-600 to-violet-600 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
-    secondary: 'bg-white border border-gray-200 text-gray-900 hover:bg-gray-50 hover:border-gray-300',
-    ghost: 'bg-transparent text-gray-600 hover:text-indigo-600 hover:bg-indigo-50/50',
+    secondary: 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-gray-100 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600',
+    ghost: 'bg-transparent text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/50 dark:hover:bg-indigo-900/20',
     teal: 'bg-gradient-to-r from-teal-600 to-emerald-600 text-white shadow-lg hover:shadow-xl hover:scale-105 active:scale-95',
   };
 
