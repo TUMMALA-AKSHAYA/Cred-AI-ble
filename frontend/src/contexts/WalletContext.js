@@ -29,6 +29,7 @@ export const WalletProvider = ({ children }) => {
     return () => {
       peraWallet.connector?.off('disconnect', handleDisconnect);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const connectWallet = async () => {

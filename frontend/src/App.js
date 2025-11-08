@@ -457,7 +457,6 @@ const CareerQuizApp = () => {
 
   if (currentStep === 'domainResults') {
     const careerInfo = careerPaths[selectedCareer];
-    const Icon = careerInfo.icon;
     const quizQuestions = domainQuizzes[selectedCareer];
 
     return (

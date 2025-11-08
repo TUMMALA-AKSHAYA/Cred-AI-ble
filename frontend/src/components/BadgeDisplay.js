@@ -12,6 +12,7 @@ const BadgeDisplay = () => {
     if (walletAddress) {
       fetchBadges();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [walletAddress]);
 
   const fetchBadges = async () => {
