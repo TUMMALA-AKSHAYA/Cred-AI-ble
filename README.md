@@ -6,8 +6,8 @@
 
 <p align="center">
   <a href="https://algorand.com"><img src="https://img.shields.io/badge/Blockchain-Algorand-00D1B2?style=for-the-badge&logo=algorand"></a>
-  <a href="https://testnet.algoexplorer.io/"><img src="https://img.shields.io/badge/Network-TestNet-orange?style=for-the-badge"></a>
-  <a href="https://github.com/algorand/js-algorand-sdk"><img src="https://img.shields.io/badge/SDK-algosdk%20v3.1.2-blue?style=for-the-badge"></a>
+  <a href="https://lora.algokit.io/testnet"><img src="https://img.shields.io/badge/Network-TestNet-orange?style=for-the-badge"></a>
+  <a href="https://github.com/algorand/js-algorand-sdk"><img src="https://img.shields.io/badge/SDK-algosdk%20v2.7.0-blue?style=for-the-badge"></a>
   <a href="https://arc.algorand.foundation/ARCs/arc-0003"><img src="https://img.shields.io/badge/Standard-ARC--3-green?style=for-the-badge"></a>
 </p>
 
@@ -15,19 +15,21 @@
   <a href="https://credaible-algo-git-main-tummala-akshayas-projects.vercel.app">
     <img src="https://img.shields.io/badge/🚀_Live_Demo-Try_Now-blueviolet?style=for-the-badge&logo=vercel" alt="Live Demo">
   </a>
-  <a href="https://testnet.algoexplorer.io/address/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M">
-    <img src="https://img.shields.io/badge/💰_Treasury-10_ALGO_Live-success?style=for-the-badge&logo=algorand" alt="Treasury">
+  <a href="https://lora.algokit.io/testnet/account/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M">
+    <img src="https://img.shields.io/badge/💰_Treasury-20_ALGO_Live-success?style=for-the-badge&logo=algorand" alt="Treasury">
   </a>
-  <a href="https://testnet.algoexplorer.io/tx/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ">
+  <a href="https://lora.algokit.io/testnet/application/749647872">
+    <img src="https://img.shields.io/badge/📱_Smart_Contract-App_ID_749647872-blue?style=for-the-badge" alt="Smart Contract">
+  </a>
+  <a href="https://lora.algokit.io/testnet/transaction/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ">
     <img src="https://img.shields.io/badge/⛓️_Example_TX-Verified_on_Chain-orange?style=for-the-badge" alt="Transaction">
   </a>
-  <img src="https://img.shields.io/badge/Credentials_Issued-47+-blue?style=for-the-badge" alt="Credentials">
 </p>
 
 <p align="center">
   <b>Quick Access:</b>
   <a href="./SCALABILITY_PITCH.md">5 Industries</a> •
-  <a href="./backend/contracts/credential_verification.py">PyTeal Contract</a> •
+  <a href="https://lora.algokit.io/testnet/application/749647872">Smart Contract</a> •
   <a href="./backend/services/algorandService.js#L30-L80">ARC-3 Code</a> •
   <a href="#-for-reviewers-code-navigation">Code Walkthrough</a>
 </p>
@@ -76,26 +78,38 @@ Build Skills → Earn Badges → Complete Roadmap → Job Ready + Blockchain Ver
 
 ### Live TestNet Deployment
 
-- 🪙 **Treasury Address:** [`PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M`](https://testnet.algoexplorer.io/address/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M)
-- 🌍 **Network:** Algorand TestNet
-- 💵 **Balance:** 10 ALGO
-- 🏅 **Credentials Issued:** 47+
-- 🔎 **Example Transaction:** [View on AlgoExplorer](https://testnet.algoexplorer.io/tx/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ)
+**Deployed Components (Verifiable on LORA Explorer):**
+
+| Component | Link | Details |
+|-----------|------|---------|
+| 💰 **Treasury Account** | [View on LORA](https://lora.algokit.io/testnet/account/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M) | 20 ALGO balance, manages credential issuance |
+| 📱 **Smart Contract** | [View Application](https://lora.algokit.io/testnet/application/749647872) | **App ID: 749647872** - Credential verification logic |
+| 🪙 **NFT Assets** | [View Assets](https://lora.algokit.io/testnet/account/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M/assets) | 47+ ARC-3 compliant credentials created |
+| ⛓️ **Example Transaction** | [View TX](https://lora.algokit.io/testnet/transaction/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ) | NFT credential minting example |
+
+### Smart Contract Features
+
+**TestNet App ID:** `749647872`
+
+**[View on LORA Explorer →](https://lora.algokit.io/testnet/application/749647872)**
+
+**Deployed Operations:**
+- ✅ **Issue Credential** - Admin mints career assessment credentials
+- ✅ **Verify Credential** - Anyone can verify credential authenticity
+- ✅ **Revoke Credential** - Admin can revoke invalid credentials
+- ✅ **On-Chain Storage** - Credential data stored in application state
+
+**Technology Stack:**
+- Algorand JavaScript SDK v2.7.0
+- TEAL v8 smart contract language
+- ARC-3 compliant NFT metadata
+- Deployed via algosdk on TestNet
 
 ### Standards Compliance
 
 ✅ **ARC-3** - NFT metadata standard (lines 30-80 in `algorandService.js`)  
 ✅ **ARC-20** - Asset parameters for on-chain properties  
 ✅ **ARC-0019/0011** - Wallet connectivity (WalletConnect, Pera, MyAlgo)
-
-### Smart Contracts (PyTeal)
-
-```python
-# Operations: issue, verify, get, revoke
-# Global State: issuer, total_issued, version
-# Local State: career_path, score, percentile, verified, timestamps
-```
-→ [View full contract](./backend/contracts/credential_verification.py)
 
 ### ARC-3 NFT Implementation
 
@@ -134,10 +148,21 @@ const txn = algosdk.makeAssetCreateTxnWithSuggestedParamsFromObject({
 | File Path | Purpose |
 |-----------|---------|
 | [`backend/services/algorandService.js`](./backend/services/algorandService.js) | ARC-3/20 compliant blockchain integration - NFT minting & on-chain storage |
-| [`backend/contracts/credential_verification.py`](./backend/contracts/credential_verification.py) | PyTeal smart contract - credential verification logic |
 | [`backend/routes/algorandRoutes.js`](./backend/routes/algorandRoutes.js) | REST API endpoints for blockchain operations |
 | [`backend/scripts/generateTreasuryAccount.js`](./backend/scripts/generateTreasuryAccount.js) | Treasury wallet creation and management |
-| [`backend/contracts/deploy_contract.sh`](./backend/contracts/deploy_contract.sh) | TestNet deployment automation script |
+
+### Quick Verification
+
+```bash
+# View smart contract on LORA
+open https://lora.algokit.io/testnet/application/749647872
+
+# View treasury account
+open https://lora.algokit.io/testnet/account/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M
+
+# View example transaction
+open https://lora.algokit.io/testnet/transaction/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ
+```
 
 </details>
 
@@ -207,7 +232,7 @@ mintCredentialNFT(address, {
 });
 ```
 
-**Total Addressable Market:** $75M+ annually across these verticals.
+**Total Addressable Market:** $265M+ annually across these verticals.
 
 → [Read full scalability analysis](./SCALABILITY_PITCH.md)
 
@@ -223,7 +248,7 @@ mintCredentialNFT(address, {
 | 💻 **Frontend** | React + Vite + Tailwind CSS | Modern UI with glassmorphism design |
 | ⚙️ **Backend** | Node.js + Express | REST API + Algorand integration |
 | 🧠 **AI/ML** | Python + Scikit-learn | Psychometric assessment scoring |
-| 🔗 **Blockchain** | Algorand (JS SDK + PyTeal) | NFT credentials + verification |
+| 🔗 **Blockchain** | Algorand (JS SDK v2.7.0) | NFT credentials + smart contracts |
 | 🗃️ **Database** | MongoDB | User profiles + progress tracking |
 | 🧾 **Storage** | IPFS | Decentralized metadata hosting |
 
@@ -241,7 +266,7 @@ Express API Server
 └─────────────────┴──────────────────┘
     ↓                    ↓
 MongoDB              Algorand TestNet
-(User Data)          (Credentials)
+(User Data)          (App ID: 749647872)
 ```
 
 </details>
@@ -255,7 +280,7 @@ MongoDB              Algorand TestNet
 |---------|-------------|-----------|
 | 🧠 **AI-Powered Quiz** | NLP-based psychometric assessment with 94% accuracy | Python (Scikit-learn) |
 | 🗺️ **Personalized Roadmap** | Step-by-step learning paths with milestones | MongoDB |
-| 🔗 **Blockchain Credentials** | ARC-3 compliant NFT badges | Algorand + PyTeal |
+| 🔗 **Blockchain Credentials** | ARC-3 compliant NFT badges | Algorand SDK + TEAL |
 | 📜 **Resume Verification** | Blockchain-linked, tamper-proof resumes | IPFS + Algorand |
 | 🤝 **Mentor Matching** | Connect with verified industry experts | Express API |
 | 🎮 **Gamification** | Earn points and badges for progress | MongoDB + Algorand |
@@ -350,20 +375,20 @@ Traditional credential systems can't scale to millions of users economically. Al
 | **ARC-3 Metadata** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L30-L55) | 30-55 | Standard-compliant structure |
 | **NFT Minting** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L60-L95) | 60-95 | Asset creation with metadata |
 | **Achievement Storage** | [`backend/services/algorandService.js`](./backend/services/algorandService.js#L130-L170) | 130-170 | On-chain data via transaction notes |
-| **PyTeal Contract** | [`backend/contracts/credential_verification.py`](./backend/contracts/credential_verification.py) | All | Smart contract operations |
-| **Dependencies** | [`backend/package.json`](./backend/package.json#L17) | 17 | `"algosdk": "^3.1.2"` |
+| **Smart Contract** | [LORA Explorer](https://lora.algokit.io/testnet/application/749647872) | Live | App ID 749647872 on TestNet |
+| **Dependencies** | [`backend/package.json`](./backend/package.json#L17) | 17 | `"algosdk": "^2.7.0"` |
 
 ### Verification Commands
 
 ```bash
-# Check treasury balance
-curl http://localhost:5001/api/algorand/balance/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M
+# View smart contract on LORA
+open https://lora.algokit.io/testnet/application/749647872
 
-# Verify transaction
-curl http://localhost:5001/api/algorand/verify/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ
+# Check treasury balance  
+curl https://testnet-api.algonode.cloud/v2/accounts/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M
 
-# Get user credentials
-curl http://localhost:5001/api/algorand/credentials/USER_ADDRESS
+# View transaction details
+open https://lora.algokit.io/testnet/transaction/2EL4XUTVWEL52PMVETBGGHKK6I5J7R6ORLOQ2MTKU3F3PJ27Z2NQ
 ```
 
 ---
@@ -380,24 +405,21 @@ cd frontend && npm install
 cd ../backend && npm install
 
 # Configure environment (.env file)
-# Required: TREASURY_MNEMONIC, MONGODB_URI, ALGOD_TOKEN
+# Required: ALGORAND_TREASURY_MNEMONIC, MONGODB_URI
 
 # Start development servers
 npm run dev              # Frontend (localhost:5173)
 cd ../backend && npm start  # Backend (localhost:5001)
 ```
 
-### Test Algorand Integration
+### Verify Blockchain Integration
 
 ```bash
-cd backend
-node scripts/testAlgorandIntegration.js
+# View deployed smart contract
+open https://lora.algokit.io/testnet/application/749647872
 
-# Expected output:
-# ✅ Treasury Balance: 10.0 ALGO
-# ✅ Minting credential...
-# ✅ Asset ID: 123456
-# ✅ Transaction: https://testnet.algoexplorer.io/tx/...
+# View treasury account
+open https://lora.algokit.io/testnet/account/PBOQ6GQA3BXVTXZPC52DYUAGTSX5WKCFWL7JCEJPUH3OIB6ACWDWDGC44M
 ```
 
 ---
@@ -406,8 +428,9 @@ node scripts/testAlgorandIntegration.js
 
 **Q1 2025** (Current)
 - ✅ MVP launch with TestNet deployment
+- ✅ Smart contract deployed (App ID: 749647872)
 - ✅ AI assessment engine + ARC-3 NFTs
-- ✅ HackSeries competition submission
+- ✅ AlgoBharat HackSeries submission
 
 **Q2 2025**
 - Partner with 3 pilot universities
@@ -445,5 +468,6 @@ MIT License - Open source for educational and commercial use.
   <b>Built with ❤️ on Algorand</b><br>
   <a href="https://credaible-algo-git-main-tummala-akshayas-projects.vercel.app">Live Demo</a> •
   <a href="https://github.com/TUMMALA-AKSHAYA/Cred-AI-ble">GitHub</a> •
+  <a href="https://lora.algokit.io/testnet/application/749647872">Smart Contract</a> •
   <a href="./SCALABILITY_PITCH.md">Scalability Pitch</a>
 </p>
