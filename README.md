@@ -471,3 +471,4 @@ MIT License - Open source for educational and commercial use.
   <a href="https://lora.algokit.io/testnet/application/749647872">Smart Contract</a> •
   <a href="./SCALABILITY_PITCH.md">Scalability Pitch</a>
 </p>
+ 
