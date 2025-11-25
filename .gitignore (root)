@@ -5,6 +5,7 @@ backend/node_modules/
 /node_modules
 
 # Environment Variables (CRITICAL - Never commit these!)
+
 .env
 .env.local
 .env.development.local
